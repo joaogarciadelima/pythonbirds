@@ -1,4 +1,5 @@
-'''Você deve criar uma classe carro que vai possuir
+"""
+Você deve criar uma classe carro que vai possuir
 dois atributos compostos por outras duas classes:
 
 Motor
@@ -41,7 +42,7 @@ Exemplo:
     >>> motor.velocidade
     0
     >>> # Testando Direcao
-    >>> direcao = Direcao()
+    >>> direcao = direcao()
     >>> direcao.valor
     'Norte'
     >>> direcao.girar_a_direita()
@@ -87,13 +88,41 @@ Exemplo:
     'Leste'
     >>> carro.girar_a_esquerda()
     >>> carro.calcular_direcao()
-    'Norte'
+    'Sul'
     >>> carro.girar_a_esquerda()
     >>> carro.calcular_direcao()
-    'Oeste' '''
+    'Oeste' """
+
+class Carro(object):
+    def __init__(self, direcao, motor):
+        self.motor = motor
+        self.direcao = direcao
+
+
+NORTE = 'Norte'
+LESTE = 'Leste'
+SUL = 'Sul'
+OESTE = 'Oeste'
+
+
+class direcao:
+
+    girar_a_direita_dct = {NORTE: LESTE, LESTE: SUL, SUL: OESTE, OESTE: NORTE}
+
+    girar_a_esquerda_dct = {NORTE: OESTE, LESTE: NORTE, SUL: LESTE, OESTE: SUL}
+
+    def __init__(self):
+        self.valor = NORTE
+
+    def girar_a_direita(self):
+        self.girar_a_direita_dct[self.valor]
+
+    def girar_a_esquerda(self):
+        self.girar_a_esquerda_dct[self.valor]
 
 
 class Motor:
+
     def __init__(self):
         self.velocidade = 0
 
@@ -105,21 +134,4 @@ class Motor:
         self.velocidade = max(0, self.velocidade)
 
 
-NORTE = 'Norte'
-LESTE = 'Leste'
-SUL = 'Sul'
-OESTE = 'Oeste'
 
-
-class Direcao:
-    rotacao_a_direita_dict = {NORTE: LESTE, LESTE: SUL, SUL: OESTE, OESTE: NORTE}
-    rotacao_a_esquerda_dict = {NORTE: OESTE, LESTE: NORTE, SUL: LESTE, OESTE: SUL}
-
-    def __init__(self):
-        self.valor = NORTE
-
-    def girar_a_direita(self):
-        self.rotacao_a_direita_dict[self.valor]
-
-    def girar_a_esquerda(self):
-        self.rotacao_a_esquerda_dict[self.valor]
